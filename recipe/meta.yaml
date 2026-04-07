@@ -1,0 +1,38 @@
+package:
+  name: akgwas
+  version: "0.1"
+
+source:
+  path: ..
+
+build:
+  noarch: python
+  script: |
+    python -m pip install . --no-deps -vv
+    find $PREFIX -type f -name "*.sh" -exec chmod +x {} \;
+
+requirements:
+  host:
+    - python >=3.11,<3.14
+    - pip
+    - setuptools
+  run:
+    - python >=3.11,<3.14
+    - perl
+    - snakemake >=9,<10
+    - kmtricks
+    - gemma
+    - bwa
+    - samtools
+    - plink
+    - parallel
+    - rush
+
+about:
+  home: https://github.com/suzkami/Aseembly_GWAS
+  license: MIT
+  summary: AKmerGWAS -- All input format (shor_read; assembly; genomes) k-mer GWAS analysis.
+  description: |
+    AKmerGWAS is a pipeline for k-mer based genome-wide association studies with any input format (shor_read; assembly; genomes).
+
+  dev_url: https://github.com/suzkami/Aseembly_GWAS

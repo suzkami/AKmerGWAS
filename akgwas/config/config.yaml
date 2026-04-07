@@ -1,0 +1,39 @@
+############################################################
+# kmergwas Project Configuration
+############################################################
+# common input
+programhome: "/home/suz/kmer_home/kmergwas_test"     # run position, requires fof.txt; pheno_dir/pheno.txt; reflist.txt; and config.yaml in programhome/
+pheno_dir: "pheno"                                   # phenotype.txt put in ./pheno/
+fof_file: "Arabi_FOF.txt"                            # FOF input
+kmer_len: 31
+
+# Step 1: Build Matrix
+build:
+  hard_min: 2
+  partitions: 0
+  threads: 8
+
+multibed:
+  block_size: "1G"
+  maf: 0.01
+  threads: 8
+
+# Step 3: GWAS
+kgwas:
+  use_external_qk: False
+  kinship: "path/to/kinship.cxx.txt"
+  pca: "path/to/pca.txt"
+  NumberbedSelect: 0.2
+  threshold: 0.0001
+  threads: 1
+
+# Step 4: Alignment
+alignment:
+  refindexlist: "testreflist.txt"                      # bwa reference index list (per path/to/refindex/reference.sa per line)
+  bwamodel: "bwa"
+
+#############################################################
+#fixed parameters !!do not change or remove
+QK_path: "QK"
+kwags_temp: "temp_gemma"
+output_final: "kmergwas_outputs"

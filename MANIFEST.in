@@ -1,0 +1,3 @@
+recursive-include akgwas/config *.yaml
+recursive-include akgwas/workflow *.smk
+recursive-include akgwas/workflow *.sh

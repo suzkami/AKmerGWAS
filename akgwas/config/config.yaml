@@ -1,39 +1,37 @@
-############################################################
-# kmergwas Project Configuration
-############################################################
+#akgwas configures
 # common input
-programhome: "/home/suz/kmer_home/kmergwas_test"     # run position, requires fof.txt; pheno_dir/pheno.txt; reflist.txt; and config.yaml in programhome/
-pheno_dir: "pheno"                                   # phenotype.txt put in ./pheno/
-fof_file: "Arabi_FOF.txt"                            # FOF input
-kmer_len: 31
+programhome: "/home/kmer_home/"     # Job home directory, use absolute path. Required files: fof.txt; pheno_dir/pheno.txt; reflist.txt; and config.yaml in programhome/
+pheno_dir: "pheno"   # Directory containing phenotype.txt file, typically located at ./pheno/                    
+fof_file: "fof.txt"  # fof file
+kmer_len: 31         # k-mer length, default is 31
+QK_path: "QK"        # No need to change unless necessary. Output directory for Kinship matrix and PCA results
+kwags_temp: "temp_gemma"          #Temporary output directory for kgwas intermediate files. (you can specific)
+output_final: "kmergwas_outputs"  #Final output directory for result files. (you can specific)
 
 # Step 1: Build Matrix
 build:
-  hard_min: 2
-  partitions: 0
-  threads: 8
+  hard_min: 2       # Only k-mers that appear more than 'hard_min' times are recorded as 1 (present). (default 2) Use 1 for assembly-native direct genome input 
+  threads: 8        # Number of threads used for this step
+  partitions: 0     # No need to change unless necessary. see kmatrics
 
+  # Partition large matrix into smaller bed chunks for multi-threading acceleration
+  # Balance based on memory and cpu threads count (smaller blocks require less memory, allowing more threads)
 multibed:
-  block_size: "1G"
-  maf: 0.01
-  threads: 8
+  block_size: "1G"  # Default partition size: 1 GB blocks
+  maf: 0.01         # Minor allele frequency filter: remove k-mers with frequency below maf (default 1%)
+  threads: 8        # Number of threads used for this step
 
 # Step 3: GWAS
 kgwas:
-  use_external_qk: False
-  kinship: "path/to/kinship.cxx.txt"
-  pca: "path/to/pca.txt"
-  NumberbedSelect: 0.2
-  threshold: 0.0001
-  threads: 1
+  use_external_qk: False # Whether to use external kinship and PCA matrices for GWAS. Default: False
+  NumberbedSelect: 0.2  #if use_external_qk: False, set percentage of chunks used to calculate kinship and pca
+  kinship: "path/to/kinship.cxx.txt"  #if set use_external_qk: True; specific kinship
+  pca: "path/to/pca.txt"              #if set use_external_qk: True; specific pca
+  threshold: 0.0001   # Threshold for k-mer extraction: only k-mers with p-values below this threshold will be extracted for downstream analysis
+  threads: 1          # No need to change unless necessary. Each block uses 1 thread, and the total number of concurrent jobs equals cores * threads
 
 # Step 4: Alignment
 alignment:
-  refindexlist: "testreflist.txt"                      # bwa reference index list (per path/to/refindex/reference.sa per line)
-  bwamodel: "bwa"
+  refindexlist: "ref_list.txt"        # bwa reference index list (per path/to/refindex/reference.sa per line)
+  bwamodel: "bwa"                     # No need to change unless necessary
 
-#############################################################
-#fixed parameters !!do not change or remove
-QK_path: "QK"
-kwags_temp: "temp_gemma"
-output_final: "kmergwas_outputs"

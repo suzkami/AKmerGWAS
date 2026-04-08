@@ -1,8 +1,8 @@
 #!/bin/bash
 #build kinship and pca from bed/ file
 
-bedinpath="/home/suz/kmer_home/snaketest/bed"
-bedoutpath="/home/suz/kmer_home/snaketest/QK"
+bedinpath="./bed"
+bedoutpath="./QK"
 NumberbedSelect=0.2
 
 #Parsing command line arguments

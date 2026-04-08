@@ -42,8 +42,19 @@ def main():
     parser = argparse.ArgumentParser(
         prog="akgwas",
         description="AKmerGWAS: All input format (shor_read; assembly; genomes) for k-mer GWAS analysis.",
-        epilog="Example:\n  akgwas --all --configfile config.yaml --cores 8\n  Author: SUZ (https://github.com/suzkami/Aseembly_GWAS)",
+        epilog="""
+Author: 
+    Su Zhuo (https://github.com/suzkami/AKmerGWAS)
+Examples:
+    akgwas --init-config
+    akgwas --all --configfile config.yaml --cores 8
+        """,
         formatter_class=argparse.RawTextHelpFormatter
+    )
+
+    parser.add_argument("--version",
+        action="version",
+        version="akgwas 0.1.0"
     )
 
     parser.add_argument("--init-config",

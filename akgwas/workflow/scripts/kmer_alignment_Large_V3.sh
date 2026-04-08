@@ -49,14 +49,14 @@ sort -k1,1 $work_path/sigk/${prefix}_sigK.txt \
 
 awk '$2 != 4' $work_path/samfile/${prefix}_${ref_prefix}_matches.sam |\
     cut -f 1,2,3,4,5,6 |\
-    sort -k1,1 > $work_path/sigk_mapped/${prefix}_matchedsam_sorted_1-6col.txt
+    sort -k1,1 > $work_path/sigk_mapped/${prefix}_${ref_prefix}_matchedsam_sorted_1-6col.txt
 
-join -1 1 -2 1 -t $'\t' $work_path/sigk_mapped/${prefix}_matchedsam_sorted_1-6col.txt \
+join -1 1 -2 1 -t $'\t' $work_path/sigk_mapped/${prefix}_${ref_prefix}_matchedsam_sorted_1-6col.txt \
     $work_path/sigk/${prefix}_sigK_sorted.txt |\
     sort -k3,3 -k4,4n \
     > $work_path/sigk_mapped/${prefix}_${ref_prefix}_chrpos_sigk.txt
 
-rm $work_path/sigk_mapped/${prefix}_matchedsam_sorted_1-6col.txt
+rm $work_path/sigk_mapped/${prefix}_${ref_prefix}_matchedsam_sorted_1-6col.txt
 echo -e "${prefix} aligment to ${ref_prefix} done; job done; end time: $(date)"
 
 } > >(tee -a $work_path/kmer_aligment.log)

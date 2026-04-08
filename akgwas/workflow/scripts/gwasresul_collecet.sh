@@ -24,6 +24,7 @@ mkdir -p $OUTHOME/gemma_combine
 #mkdir -p $OUTHOME/samfile
 #mkdir -p $OUTHOME/sigk_mapped
 
+sleep 180
 for P in $(basename -a $PHENOPATH/*.txt);
 do  
     Index=$(echo ${P} | sed 's/.txt//g')

@@ -1,6 +1,6 @@
 package:
   name: akgwas
-  version: "0.1"
+  version: "0.1.0"
 
 source:
   path: ..
@@ -28,10 +28,14 @@ requirements:
     - parallel
     - rush
 
+test:
+  commands:
+    - akgwas --help
+
 about:
   home: https://github.com/suzkami/Aseembly_GWAS
   license: MIT
-  summary: AKmerGWAS -- All input format (shor_read; assembly; genomes) k-mer GWAS analysis.
+  summary: AKmerGWAS -- All input format (shor_read; assembly; genomes) k-mer GWAS.
   description: |
     AKmerGWAS is a pipeline for k-mer based genome-wide association studies with any input format (shor_read; assembly; genomes).
 

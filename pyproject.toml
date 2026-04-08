@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "akgwas"
+version = "0.1.0"
+description = "AKmerGWAS -- All input format (shor_read; assembly; genomes) k-mer GWAS"
+authors = [
+  {name = "Su Zhuo", email = "szsuzhuo@163.com"}
+]
+readme = "README.md"
+requires-python = ">=3.11,<3.14"
+
+dependencies = [
+    "snakemake"
+]
+
+[project.scripts]
+akgwas = "akgwas.cli:main"

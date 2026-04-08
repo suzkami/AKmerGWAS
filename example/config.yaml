@@ -1,6 +1,6 @@
 #akgwas configures
 # common input
-programhome: "/home/kmer_home/"     # Job home directory, use absolute path. Required files: fof.txt; pheno_dir/pheno.txt; reflist.txt; and config.yaml in programhome/
+programhome: "/home/suz/kmer_home/AKmerGWAS/example"     # Job home directory, use absolute path. Required files: fof.txt; pheno_dir/pheno.txt; reflist.txt; and config.yaml in programhome/
 pheno_dir: "pheno"   # Directory containing phenotype.txt file, typically located at ./pheno/                    
 fof_file: "fof.txt"  # fof file
 kmer_len: 31         # k-mer length, default is 31
@@ -10,14 +10,14 @@ output_final: "kmergwas_outputs"  #Final output directory for result files. (you
 
 # Step 1: Build Matrix
 build:
-  hard_min: 2       # Only k-mers that appear more than 'hard_min' times are recorded as 1 (present). (default 2) Use 1 for assembly-native direct genome input 
+  hard_min: 1       # Only k-mers that appear more than 'hard_min' times are recorded as 1 (present). (default 2) Use 1 for assembly-native direct genome input 
   threads: 8        # Number of threads used for this step
-  partitions: 0     # No need to change unless necessary. see kmatrics (https://github.com/tlemane/kmtricks)
+  partitions: 0     # No need to change unless necessary. see kmatrics
 
   # Partition large matrix into smaller bed chunks for multi-threading acceleration
   # Balance based on memory and cpu threads count (smaller blocks require less memory, allowing more threads)
 multibed:
-  block_size: "1G"  # Default partition size: 1 GB blocks (e.g. 500M (Mb) 2G (Gb))
+  block_size: "1G"  # Default partition size: 1 GB blocks
   maf: 0.01         # Minor allele frequency filter: remove k-mers with frequency below maf (default 1%)
   threads: 8        # Number of threads used for this step
 

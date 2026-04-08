@@ -1,0 +1,3 @@
+/home/suz/kmer_home/AKmerGWAS/example/bwaindex/pseudo1652.fasta.gz.sa
+/home/suz/kmer_home/AKmerGWAS/example/bwaindex/pseudo2057.fasta.gz.sa
+/home/suz/kmer_home/AKmerGWAS/example/bwaindex/pseudo772.fasta.gz.sa

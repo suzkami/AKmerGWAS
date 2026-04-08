@@ -115,7 +115,7 @@ Create a `ref_list.txt` file listing `.sa` files:
 - If not provided, AKmerGWAS will generate them automatically
 - Results may vary due to random sampling
 
-To ensure reproducibility, back up generated files:
+To ensure reproducibility, back up generated files in:
 ```
 QK_path: "QK"
 ```
@@ -125,6 +125,10 @@ QK_path: "QK"
 ## ⚠️ Notes
 
 - Recommended population size: **at least 96 samples**
+- RAM required: **depends on block_size and threads used, 1GB block_size per thread need approximate 3GB RAM**
+- The main bottleneck: **high storage space requirements (for short-read data, at least 3 times the data size is required)**
+- Example for 96 Arabidopsis samples: **25 GB of RAM (1GB block_size and 8 threads used) and approximately 150 GB of storage**
+- Run for 1135 arabidopsis: **50GB RAM and ~1.5TB storge required**
 
 ---
 

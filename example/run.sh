@@ -12,4 +12,8 @@ find $PATHWORK/bwaindex -type f -name "*.sa" > ref_list.txt
 #akgwas --init-config
 #vim config.yaml
 sed -i "s|^programhome: \"/home/suz/kmer_home/AKmerGWAS/example\"|programhome: \"$PATHWORK\"|" config.yaml
+sed -i "s|/home/suz/kmer_home/AKmerGWAS/example|$PATHWORK/sequence|g" $PATHWORK/fof.txt
+
 akgwas --all --configfile config.yaml --cores 8
+
+

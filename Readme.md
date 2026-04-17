@@ -29,8 +29,8 @@ akgwas --version
 ## 🚀 Quick Start
 
 ```bash
-git clone https://github.com/suzkami/AKmerGWAS/akgwas
-cd akgwas/example
+git clone https://github.com/suzkami/AKmerGWAS
+cd AKmerGWAS/example
 bash run.sh
 ```
 

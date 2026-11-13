@@ -6,11 +6,8 @@ package:
   version: "{{ version }}"
 
 source:
-  # NOTE: after tagging v1.0.0 on GitHub, replace the sha256 below with the real
-  # value. Regenerate with:
-  #   curl -sL <url> | sha256sum
   url: https://github.com/suzkami/AKmerGWAS/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: 9f374e7201be394509db13e7081f963ce21db4675b153c40c74dbc3edcb07db8
+  sha256: 1135d16c6d6fa09f89654f6799f1dfc4d8c61a0f75a652c9acf7f748f07ea172
 
 build:
   number: 0

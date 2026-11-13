@@ -1,3 +1,4 @@
-recursive-include akgwas/config *.yaml
-recursive-include akgwas/workflow *.smk
-recursive-include akgwas/workflow *.sh
+include README.md
+include README_CN.md
+include LICENSE
+include CHANGELOG.md

@@ -1,15 +1,21 @@
+{% set name = "akgwas" %}
+{% set version = "1.0.0" %}
+
 package:
-  name: akgwas
-  version: "0.1.0"
+  name: {{ name }}
+  version: "{{ version }}"
 
 source:
-  path: ..
+  # NOTE: after tagging v1.0.0 on GitHub, replace the sha256 below with the real
+  # value. Regenerate with:
+  #   curl -sL <url> | sha256sum
+  url: https://github.com/suzkami/AKmerGWAS/archive/refs/tags/v{{ version }}.tar.gz
+  sha256: 9f374e7201be394509db13e7081f963ce21db4675b153c40c74dbc3edcb07db8
 
 build:
+  number: 0
   noarch: python
-  script: |
-    python -m pip install . --no-deps -vv
-    find $PREFIX -type f -name "*.sh" -exec chmod +x {} \;
+  script: python -m pip install . --no-deps -vv
 
 requirements:
   host:
@@ -18,25 +24,35 @@ requirements:
     - setuptools
   run:
     - python >=3.11,<3.14
-    - perl
-    - snakemake >=9,<10
     - kmtricks
     - gemma
-    - bwa
-    - samtools
     - plink
-    - parallel
-    - rush
+    - bowtie
+    - bwa
 
 test:
   commands:
+    - akgwas --version
     - akgwas --help
+    - akgwas --errors
+  imports:
+    - akgwas
+    - akgwas.stages
 
 about:
-  home: https://github.com/suzkami/Aseembly_GWAS
+  home: https://github.com/suzkami/AKmerGWAS
   license: MIT
-  summary: AKmerGWAS -- All input format (shor_read; assembly; genomes) k-mer GWAS.
+  license_file: LICENSE
+  summary: "AKmerGWAS -- k-mer GWAS for any input format (short reads, assemblies, genomes)."
   description: |
-    AKmerGWAS is a pipeline for k-mer based genome-wide association studies with any input format (shor_read; assembly; genomes).
+    AKmerGWAS is a k-mer based genome-wide association study pipeline that
+    accepts any input format (short reads, assemblies, whole genomes). It counts
+    k-mers with kmtricks, turns the presence/absence matrix into PLINK bed chunks,
+    runs GEMMA association per chunk and trait, and maps significant k-mers back
+    to reference genomes with bowtie or bwa. Version 1.0.0 is a pure-Python
+    (standard-library-only) rewrite of the original Snakemake workflow.
+  dev_url: https://github.com/suzkami/AKmerGWAS
 
-  dev_url: https://github.com/suzkami/Aseembly_GWAS
+extra:
+  recipe-maintainers:
+    - suzkami

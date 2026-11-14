@@ -4,7 +4,7 @@
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)，项目使用
 [语义化版本](https://semver.org/)。
 
-## [1.0.0] — 2026-10-12
+## [1.0.0] — 2026-11-14
 
 将 0.1.0 的 Python/Snakemake/Bash 技术栈彻底重写为单一纯 Python 编排器，
 **无任何第三方运行时依赖**（仅使用标准库）。外部工具（kmtricks、gemma、plink、bowtie、bwa）
